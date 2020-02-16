@@ -1,0 +1,231 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="John Doe"><meta name="renderer" content="webkit"><meta name="copyright" content="John Doe"><meta name="keywords" content="Hexo"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>java基础 · gotiのBlog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/head.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/head.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">goti</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//blog.evenia.moe" target="_black">怜儿</a></span><span><a href="//lzl1521230945.gitee.io/myblog/" target="_black">云程万里</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a>gotiのBlog</a></div><div class="intro-nav-label-box"><a href="/">主页</a><a href="/about/">关于</a><a href="/archives/">文章</a><a href="/tags/">标签</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">主页</a><a href="/about/">关于</a><a href="/archives/">文章</a><a href="/tags/">标签</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">java基础</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2019-08-18</span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="java"> java</a><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="笔记"> 笔记</a></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">3.2k</span> | Reading time: <span class="post-count">13</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h2 id="该篇文章主要总结一下java的基础语法与基础知识点"><a href="#该篇文章主要总结一下java的基础语法与基础知识点" class="headerlink" title="该篇文章主要总结一下java的基础语法与基础知识点"></a>该篇文章主要总结一下java的基础语法与基础知识点</h2><a id="more"></a>
+<h2 id="参考或出处："><a href="#参考或出处：" class="headerlink" title="参考或出处："></a>参考或出处：</h2><h2 id="打翻了牛顿吃饭的碗"><a href="#打翻了牛顿吃饭的碗" class="headerlink" title="- 打翻了牛顿吃饭的碗"></a>- <a href="https://www.cnblogs.com/zhaojinyan/p/9401010.html" target="_blank" rel="noopener">打翻了牛顿吃饭的碗</a></h2><h2 id="屌丝码农"><a href="#屌丝码农" class="headerlink" title="- 屌丝码农"></a>- <a href="https://www.cnblogs.com/pony1223/p/7608955.html" target="_blank" rel="noopener">屌丝码农</a></h2><h2 id="talenter"><a href="#talenter" class="headerlink" title="- talenter"></a>- <a href="https://www.cnblogs.com/talenter/p/9652976.html" target="_blank" rel="noopener">talenter</a></h2><ul>
+<li><p>java中”||”和”|”的区别，以及”&amp;&amp;”与”&amp;”的区别</p>
+<ul>
+<li>“||”和”|”的区别<ul>
+<li>“||”表示逻辑或(也叫做短路或)，当左边为真时就返回true，不对右边继续进行判断</li>
+<li>“|”表示按位或,当左边为真时继续判断右边，但是只要有一个为真时就会返回true</li>
+</ul>
+</li>
+<li>“&amp;&amp;”与”&amp;”的区别<ul>
+<li>“&amp;&amp;”表示逻辑与(也叫做短路与)，当左边为假时就返回false，不对右边继续进行判断</li>
+<li>“&amp;”表示按位与，当左边为假时会继续判断右边，但是只要有一个为假时就会返回false</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>取整方法</p>
+<ul>
+<li><p>Math.ceil():表示向上取整；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.ceil(11.3)=12;Math.ceil(-11.3)=-12。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Math.floor():表示向下取整；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math.floor(11.6)=12;</span><br><span class="line">Math.floor(-11.6)=-12。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Math.round():表示四舍五入；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math.round(11.5)=12;</span><br><span class="line">Math.round(-11.5)=-11;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>String  s =new  String (“syz”);创建了几个String Object?</p>
+<ol>
+<li><p>如果String常理池(常量缓冲区)中，已经创建”xyz”，则不会继续创建，此时只创建了一个对象new String(“xyz”)；</p>
+</li>
+<li><p>如果String常理池中，没有创建”xyz”，则会创建两个对象，一个对象的值是”xyz”，一个对象new String(“xyz”)。</p>
+</li>
+</ol>
+</li>
+<li><p>java23种设计模式</p>
+<ul>
+<li><p>设计模式的概念</p>
+<ul>
+<li>设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是它能被广泛应用的原因。</li>
+</ul>
+</li>
+<li><p>设计模式6大原则</p>
+<ol>
+<li><p>开闭原则（Open Close Principle）</p>
+<p>开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后面的具体设计中我们会提到这点。</p>
+</li>
+<li><p>里氏代换原则（Liskov Substitution Principle）</p>
+<p>里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。 LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。</p>
+</li>
+<li><p>依赖倒转原则（Dependence Inversion Principle）<br>这个是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。</p>
+</li>
+<li><p>接口隔离原则（Interface Segregation Principle）</p>
+<p>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。还是一个降低类之间的耦合度的意思，从这儿我们看出，其实设计模式就是一个软件的设计思想，从大型软件架构出发，为了升级和维护方便。所以上文中多次出现：降低依赖，降低耦合。</p>
+</li>
+<li><p>迪米特法则（最少知道原则）（Demeter Principle）</p>
+<p>为什么叫最少知道原则，就是说：一个实体应当尽量少的与其他实体之间发生相互作用，使得系统功能模块相对独立。</p>
+</li>
+<li><p>合成复用原则（Composite Reuse Principle）</p>
+<p>原则是尽量使用合成/聚合的方式，而不是使用继承。</p>
+</li>
+</ol>
+</li>
+<li><p>常用的设计模式</p>
+<ol>
+<li><p>工厂模式（Factory Method）</p>
+<p>　常用的工厂模式是静态工厂，利用static方法，作为一种类似于常见的工具类Utils等辅助效果，一般情况下工厂类不需要实例化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">interface food&#123;&#125;</span><br><span class="line"></span><br><span class="line">class A implements food&#123;&#125;</span><br><span class="line">class B implements food&#123;&#125;</span><br><span class="line">class C implements food&#123;&#125;</span><br><span class="line"></span><br><span class="line">public class StaticFactory &#123;</span><br><span class="line"></span><br><span class="line">   private StaticFactory()&#123;&#125;</span><br><span class="line">   </span><br><span class="line">   public static food getA()&#123;  return new A(); &#125;</span><br><span class="line">   public static food getB()&#123;  return new B(); &#125;</span><br><span class="line">   public static food getC()&#123;  return new C(); &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Client&#123;</span><br><span class="line">   //客户端代码只需要将相应的参数传入即可得到对象</span><br><span class="line">   //用户不需要了解工厂类内部的逻辑。</span><br><span class="line">   public void get(String name)&#123;</span><br><span class="line">      food x = null ;</span><br><span class="line">      if ( name.equals(&quot;A&quot;)) &#123;</span><br><span class="line">            x = StaticFactory.getA();</span><br><span class="line">      &#125;else if ( name.equals(&quot;B&quot;))&#123;</span><br><span class="line">            x = StaticFactory.getB();</span><br><span class="line">      &#125;else &#123;</span><br><span class="line">            x = StaticFactory.getC();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>抽象工厂模式（Abstract Factory</p>
+<p>　　一个基础接口定义了功能，每个实现接口的子类就是产品，然后定义一个工厂接口，实现了工厂接口的就是工厂，这时候，接口编程的优点就出现了，我们可以新增产品类（只需要实现产品接口），只需要同时新增一个工厂类，客户端就可以轻松调用新产品的代码。</p>
+<p>　　抽象工厂的灵活性就体现在这里，无需改动原有的代码，毕竟对于客户端来说，静态工厂模式在不改动StaticFactory类的代码时无法新增产品，如果采用了抽象工厂模式，就可以轻松的新增拓展类。</p>
+<p>实例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">interface food&#123;&#125;</span><br><span class="line"></span><br><span class="line">class A implements food&#123;&#125;</span><br><span class="line">class B implements food&#123;&#125;</span><br><span class="line"></span><br><span class="line">interface produce&#123; food get();&#125;</span><br><span class="line"></span><br><span class="line">class FactoryForA implements produce&#123;</span><br><span class="line">   @Override</span><br><span class="line">   public food get() &#123;</span><br><span class="line">      return new A();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">class FactoryForB implements produce&#123;</span><br><span class="line">   @Override</span><br><span class="line">   public food get() &#123;</span><br><span class="line">      return new B();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class AbstractFactory &#123;</span><br><span class="line">   public void ClientCode(String name)&#123;</span><br><span class="line">      food x= new FactoryForA().get();</span><br><span class="line">      x = new FactoryForB().get();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>单例模式（Singleton）</p>
+<p>　在内部创建一个实例，构造器全部设置为private，所有方法均在该实例上改动，在创建上要注意类的实例化只能执行一次，可以采用许多种方法来实现，如Synchronized关键字，或者利用内部类等机制来实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">private Singleton()&#123;&#125;</span><br><span class="line"></span><br><span class="line">private static class SingletonBuild&#123;</span><br><span class="line">   private static Singleton value = new Singleton();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Singleton getInstance()&#123;  return  SingletonBuild.value ;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建造者模式（Builder）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">public class Builder &#123;</span><br><span class="line"></span><br><span class="line">   static class Student&#123;</span><br><span class="line">      String name = null ;</span><br><span class="line">      int number = -1 ;</span><br><span class="line">      String sex = null ;</span><br><span class="line">      int age = -1 ;</span><br><span class="line">      String school = null ;</span><br><span class="line"></span><br><span class="line">　　　　　//构建器，利用构建器作为参数来构建Student对象</span><br><span class="line">      static class StudentBuilder&#123;</span><br><span class="line">            String name = null ;</span><br><span class="line">            int number = -1 ;</span><br><span class="line">            String sex = null ;</span><br><span class="line">            int age = -1 ;</span><br><span class="line">            String school = null ;</span><br><span class="line">            public StudentBuilder setName(String name) &#123;</span><br><span class="line">               this.name = name;</span><br><span class="line">               return  this ;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            public StudentBuilder setNumber(int number) &#123;</span><br><span class="line">               this.number = number;</span><br><span class="line">               return  this ;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            public StudentBuilder setSex(String sex) &#123;</span><br><span class="line">               this.sex = sex;</span><br><span class="line">               return  this ;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            public StudentBuilder setAge(int age) &#123;</span><br><span class="line">               this.age = age;</span><br><span class="line">               return  this ;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            public StudentBuilder setSchool(String school) &#123;</span><br><span class="line">               this.school = school;</span><br><span class="line">               return  this ;</span><br><span class="line">            &#125;</span><br><span class="line">            public Student build() &#123;</span><br><span class="line">               return new Student(this);</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      public Student(StudentBuilder builder)&#123;</span><br><span class="line">            this.age = builder.age;</span><br><span class="line">            this.name = builder.name;</span><br><span class="line">            this.number = builder.number;</span><br><span class="line">            this.school = builder.school ;</span><br><span class="line">            this.sex = builder.sex ;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public static void main( String[] args )&#123;</span><br><span class="line">      Student a = new Student.StudentBuilder().setAge(13).setName(&quot;LiHua&quot;).build();</span><br><span class="line">      Student b = new Student.StudentBuilder().setSchool(&quot;sc&quot;).setSex(&quot;Male&quot;).setName(&quot;ZhangSan&quot;).build();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>原型模式（Protype）<br>原型模式就是讲一个对象作为原型，使用clone()方法来创建新的实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class Prototype implements Cloneable&#123;</span><br><span class="line"></span><br><span class="line">   private String name;</span><br><span class="line"></span><br><span class="line">   public String getName() &#123;</span><br><span class="line">      return name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void setName(String name) &#123;</span><br><span class="line">      this.name = name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   @Override</span><br><span class="line">   protected Object clone()   &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">            return super.clone();</span><br><span class="line">      &#125; catch (CloneNotSupportedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">      &#125;finally &#123;</span><br><span class="line">            return null;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public static void main ( String[] args)&#123;</span><br><span class="line">      Prototype pro = new Prototype();</span><br><span class="line">      Prototype pro1 = (Prototype)pro.clone();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此处使用的是浅拷贝，关于深浅拷贝，大家可以另行查找相关资料。</p>
+</li>
+<li><p>适配器模式（Adapter）</p>
+<p>适配器模式的作用就是在原来的类上提供新功能。主要可分为3种：</p>
+<ol>
+<li><p>类适配：创建新类，继承源类，并实现新接口，例如 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class  adapter extends oldClass  implements newFunc&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象适配：创建新类持源类的实例，并实现新接口，例如 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class adapter implements newFunc &#123; private oldClass oldInstance ;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接口适配：创建新的抽象类实现旧接口方法。例如 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abstract class adapter implements oldClassFunc &#123; void newFunc();&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>装饰模式（Decorator)</p>
+<p> 给一类对象增加新的功能，装饰方法与具体的内部逻辑无关。例如：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface Source&#123; void method();&#125;</span><br><span class="line">  public class Decorator implements Source&#123;</span><br><span class="line"></span><br><span class="line">  private Source source ;</span><br><span class="line">  public void decotate1()&#123;</span><br><span class="line">     System.out.println(&quot;decorate&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  @Override</span><br><span class="line">  public void method() &#123;</span><br><span class="line">     decotate1();</span><br><span class="line">     source.method();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代理模式（Proxy）<br>客户端通过代理类访问，代理类实现具体的实现细节，客户只需要使用代理类即可实现操作。</p>
+<p>这种模式可以对旧功能进行代理，用一个代理类调用原有的方法，且对产生的结果进行控制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">interface Source&#123; void method();&#125;</span><br><span class="line"></span><br><span class="line">class OldClass implements Source&#123;</span><br><span class="line">   @Override</span><br><span class="line">   public void method() &#123;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Proxy implements Source&#123;</span><br><span class="line">   private Source source = new OldClass();</span><br><span class="line"></span><br><span class="line">   void doSomething()&#123;&#125;</span><br><span class="line">   @Override</span><br><span class="line">   public void method() &#123;</span><br><span class="line">      new Class1().Func1();</span><br><span class="line">      source.method();</span><br><span class="line">      new Class2().Func2();</span><br><span class="line">      doSomething();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>外观模式（Facade）</p>
+<p>为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。这句话是百度百科的解释，有点难懂，但是没事，看下面的例子，我们在启动停止所有子系统的时候，为它们设计一个外观类，这样就可以实现统一的接口，这样即使有新增的子系统subSystem4,也可以在不修改客户端代码的情况下轻松完成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Facade &#123;</span><br><span class="line">   private subSystem1 subSystem1 = new subSystem1();</span><br><span class="line">   private subSystem2 subSystem2 = new subSystem2();</span><br><span class="line">   private subSystem3 subSystem3 = new subSystem3();</span><br><span class="line">   </span><br><span class="line">   public void startSystem()&#123;</span><br><span class="line">      subSystem1.start();</span><br><span class="line">      subSystem2.start();</span><br><span class="line">      subSystem3.start();</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public void stopSystem()&#123;</span><br><span class="line">      subSystem1.stop();</span><br><span class="line">      subSystem2.stop();</span><br><span class="line">      subSystem3.stop();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>桥接模式（Bridge）<br>桥接（Bridge）是用于把抽象化与实现化解耦，使得二者可以独立变化。这种类型的设计模式属于结构型模式，它通过提供抽象化和实现化之间的桥接结构，来实现二者的解耦。</p>
+<p>这种模式涉及到一个作为桥接的接口，使得实体类的功能独立于接口实现类。这两种类型的类可被结构化改变而互不影响。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"> interface DrawAPI &#123;</span><br><span class="line">   public void drawCircle(int radius, int x, int y);</span><br><span class="line">&#125;</span><br><span class="line">class RedCircle implements DrawAPI &#123;</span><br><span class="line">   @Override</span><br><span class="line">   public void drawCircle(int radius, int x, int y) &#123;</span><br><span class="line">      System.out.println(&quot;Drawing Circle[ color: red, radius: &quot;</span><br><span class="line">               + radius +&quot;, x: &quot; +x+&quot;, &quot;+ y +&quot;]&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">class GreenCircle implements DrawAPI &#123;</span><br><span class="line">   @Override</span><br><span class="line">   public void drawCircle(int radius, int x, int y) &#123;</span><br><span class="line">      System.out.println(&quot;Drawing Circle[ color: green, radius: &quot;</span><br><span class="line">               + radius +&quot;, x: &quot; +x+&quot;, &quot;+ y +&quot;]&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract class Shape &#123;</span><br><span class="line">   protected DrawAPI drawAPI;</span><br><span class="line">   protected Shape(DrawAPI drawAPI)&#123;</span><br><span class="line">      this.drawAPI = drawAPI;</span><br><span class="line">   &#125;</span><br><span class="line">   public abstract void draw();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Circle extends Shape &#123;</span><br><span class="line">   private int x, y, radius;</span><br><span class="line"></span><br><span class="line">   public Circle(int x, int y, int radius, DrawAPI drawAPI) &#123;</span><br><span class="line">      super(drawAPI);</span><br><span class="line">      this.x = x;</span><br><span class="line">      this.y = y;</span><br><span class="line">      this.radius = radius;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void draw() &#123;</span><br><span class="line">      drawAPI.drawCircle(radius,x,y);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//客户端使用代码</span><br><span class="line">Shape redCircle = new Circle(100,100, 10, new RedCircle());</span><br><span class="line">Shape greenCircle = new Circle(100,100, 10, new GreenCircle());</span><br><span class="line">redCircle.draw();</span><br><span class="line">greenCircle.draw();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>组合模式（Composite）</p>
+<p>  组合模式是为了表示那些层次结构，同时部分和整体也可能是一样的结构，常见的如文件夹或者树。举例：</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">abstract class component&#123;&#125;</span><br><span class="line"></span><br><span class="line">class File extends  component&#123; String filename;&#125;</span><br><span class="line"></span><br><span class="line">class Folder extends  component&#123;</span><br><span class="line">   component[] files ;  //既可以放文件File类，也可以放文件夹Folder类。Folder类下又有子文件或子文件夹。</span><br><span class="line">   String foldername ;</span><br><span class="line">   public Folder(component[] source)&#123; files = source ;&#125;</span><br><span class="line">   </span><br><span class="line">   public void scan()&#123;</span><br><span class="line">      for ( component f:files)&#123;</span><br><span class="line">            if ( f instanceof File)&#123;</span><br><span class="line">               System.out.println(&quot;File &quot;+((File) f).filename);</span><br><span class="line">            &#125;else if(f instanceof Folder)&#123;</span><br><span class="line">               Folder e = (Folder)f ;</span><br><span class="line">               System.out.println(&quot;Folder &quot;+e.foldername);</span><br><span class="line">               e.scan();</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<ol start="12">
+<li>享元模式（Flyweight）<br>使用共享对象的方法，用来尽可能减少内存使用量以及分享资讯。通常使用工厂类辅助，例子中使用一个HashMap类进行辅助判断，数据池中是否已经有了目标实例，如果有，则直接返回，不需要多次创建重复实例。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">abstract class flywei&#123; &#125;</span><br><span class="line"></span><br><span class="line">public class Flyweight extends flywei&#123;</span><br><span class="line">   Object obj ;</span><br><span class="line">   public Flyweight(Object obj)&#123;</span><br><span class="line">      this.obj = obj;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class  FlyweightFactory&#123;</span><br><span class="line">   private HashMap&lt;Object,Flyweight&gt; data;</span><br><span class="line"></span><br><span class="line">   public FlyweightFactory()&#123; data = new HashMap&lt;&gt;();&#125;</span><br><span class="line"></span><br><span class="line">   public Flyweight getFlyweight(Object object)&#123;</span><br><span class="line">      if ( data.containsKey(object))&#123;</span><br><span class="line">            return data.get(object);</span><br><span class="line">      &#125;else &#123;</span><br><span class="line">            Flyweight flyweight = new Flyweight(object);</span><br><span class="line">            data.put(object,flyweight);</span><br><span class="line">            return flyweight;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+</article><!-- lincense--><div class="post-paginator"><a class="prevSlogan" href="/2020/01/21/mysql/" title="mysql"><span>< PreviousPost</span><br><span class="prevTitle">mysql</span></a><a class="nextSlogan" href="/2019/08/15/unityNotas/" title="unityNotas"><span>NextPost ></span><br><span class="nextTitle">unityNotas</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java基础"><span class="toc-number">1.</span> <span class="toc-text">java基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#该篇文章主要总结一下java的基础语法与基础知识点"><span class="toc-number">1.1.</span> <span class="toc-text">该篇文章主要总结一下java的基础语法与基础知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考或出处："><span class="toc-number">1.2.</span> <span class="toc-text">参考或出处：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打翻了牛顿吃饭的碗"><span class="toc-number">1.3.</span> <span class="toc-text">- 打翻了牛顿吃饭的碗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#屌丝码农"><span class="toc-number">1.4.</span> <span class="toc-text">- 屌丝码农</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#talenter"><span class="toc-number">1.5.</span> <span class="toc-text">- talenter</span></a></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body></html>
