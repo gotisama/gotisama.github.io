@@ -1,0 +1,127 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="John Doe"><meta name="renderer" content="webkit"><meta name="copyright" content="John Doe"><meta name="keywords" content="Hexo"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>driving_test · gotiのBlog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/head.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/head.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">goti</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//blog.evenia.moe" target="_black">怜儿</a></span><span><a href="//lzl1521230945.gitee.io/myblog/" target="_black">云程万里</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a>gotiのBlog</a></div><div class="intro-nav-label-box"><a href="/">主页</a><a href="/about/">关于</a><a href="/archives/">文章</a><a href="/tags/">标签</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">主页</a><a href="/about/">关于</a><a href="/archives/">文章</a><a href="/tags/">标签</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">driving_test</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2020-02-29</span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="driver"> driver</a></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">412</span> | Reading time: <span class="post-count">1</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h1 id="考驾照科一笔记"><a href="#考驾照科一笔记" class="headerlink" title="考驾照科一笔记"></a>考驾照科一笔记</h1><a id="more"></a>
+<ul>
+<li><p>1<br>  <img src="http://goti-bucket.oss-cn-shanghai.aliyuncs.com/image/20200229/105922765.png" alt="mark"><br>  tips：</p>
+<p>  难度等级：<br>  《实施条例》第七十八条：<br>  同方向有2条车道的，左侧车道的最低车速为每小时100公里。</p>
+</li>
+<li><p>2<br>  <img src="http://goti-bucket.oss-cn-shanghai.aliyuncs.com/image/20200229/110117960.png" alt="mark"><br>  tips:</p>
+<p>  八停三减</p>
+</li>
+<li><p>3<br>  <img src="http://goti-bucket.oss-cn-shanghai.aliyuncs.com/image/20200229/110316308.png" alt="mark"><br>  tips:</p>
+<p>  三条的由120减去10得110，110-20得90，90-30得60，10.20.30逐项递减</p>
+</li>
+<li><p>4<br>  <img src="http://goti-bucket.oss-cn-shanghai.aliyuncs.com/image/20200229/111050799.png" alt="mark"><br>  tips:</p>
+<p>  车辆的灯光不仅仅是在光线不足的情况下提供照明，而更重要的是起到警示作用，即使在白<br>  天，人们也会首先注意到亮着灯的车辆，不管是行人还是其他车辆的司机。夜间在照明条件<br>  良好的路段行驶，应使用近光灯。</p>
+</li>
+<li><p>5<br>  <img src="http://goti-bucket.oss-cn-shanghai.aliyuncs.com/image/20200229/111320283.png" alt="mark"><br>  tips:</p>
+<p>  从图中可以看出，是没有中心线的道路。按照规定，机动车在道路上行驶不得超过限速标志、标线标明的速度。在没有限速标志、标线的道路上，没有道路中心线的道路，城市道路为每小时30公里，公路为每小时40公里。</p>
+</li>
+<li><p>6<br> <img src="http://goti-bucket.oss-cn-shanghai.aliyuncs.com/image/20200229/111520406.png" alt="mark"><br> tips：</p>
+<p> 《实施条例》第六十一条：<br> 牵引车和被牵引车均应当开启危险报警闪光灯。 </p>
+</li>
+<li><p>7<br>  <img src="http://goti-bucket.oss-cn-shanghai.aliyuncs.com/image/20200229/112602350.png" alt="mark"><br>  tips：</p>
+<p>  2016年4月1日已经实施的“公安部139号令”已经删除2012年的“公安部123令”中第十三条第二款关于“不能在暂住地初次申领大型货车驾驶证”的规定，取消了异地考驾照对客货车驾驶证的限制，客货车驾驶证也可以在暂住地申领了，但是需要有当地的居住证或者暂住证。</p>
+</li>
+<li><p>8<br>  <img src="http://goti-bucket.oss-cn-shanghai.aliyuncs.com/image/20200229/112920344.png" alt="mark"><br>  tips：</p>
+<p>  右转让左转 左转让直行 转弯让直行</p>
+</li>
+</ul>
+</article><!-- lincense--><div class="post-paginator"><a class="nextSlogan" href="/2020/02/16/angular/" title="angular"><span>NextPost ></span><br><span class="nextTitle">angular</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#考驾照科一笔记"><span class="toc-number">1.</span> <span class="toc-text">考驾照科一笔记</span></a></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body></html>
